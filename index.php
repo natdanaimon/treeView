@@ -123,10 +123,10 @@ fasdfsdfsadf
                 .attr("xlink:href", function (d) {
                     return d.icon;
                 })
-                .attr("x", "-12px")
-                .attr("y", "-12px")
-                .attr("width", "40px")
-                .attr("height", "40px");
+                .attr("x", "-17px")
+                .attr("y", "-40px")
+                .attr("width", "36px")
+                .attr("height", "36px");
 
         // Transition nodes to their new position.
         var nodeUpdate = node.transition()

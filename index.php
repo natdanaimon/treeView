@@ -25,16 +25,16 @@
 </style>
 <body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="//d3js.org/d3.v3.min.js"></script>
+    <script src="3d.js"></script>
     fsadfd
 <layer></layer>
 fasdfsdfsadf
 <script>
 
-          
+
     var margin = {top: 20, right: 120, bottom: 20, left: 120},
             width = 960 - margin.right - margin.left,
-            height = 800 - margin.top - margin.bottom;
+            height = 950 - margin.top - margin.bottom;
 
     var i = 0,
             duration = 750,
@@ -54,9 +54,9 @@ fasdfsdfsadf
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    
 
-    d3.select(self.frameElement).style("height", "800px");
+
+    d3.select(self.frameElement).style("height", "950px");
 
     function update(source) {
 
@@ -98,19 +98,21 @@ fasdfsdfsadf
                     return d.children || d._children ? "end" : "start";
                 })
                 .text(function (d) {
-                    return d.name;
+                    return d.name+" : "+d.turnOver+" ฿";
                 })
                 .style("fill-opacity", 1e-6);
 
 
-        nodeEnter.append("image")
-                .attr("xlink:href", function (d) {
-                    return "1600.png";
-                })
-                .attr("x", "-17px")
-                .attr("y", "-40px")
-                .attr("width", "36px")
-                .attr("height", "36px");
+//        nodeEnter.append("image")
+//                .attr("xlink:href", function (d) {
+//                    return "1600.png";
+//                })
+////                .attr("x", "-17px")
+////                .attr("y", "-40px"
+//                .attr("x", "4px")
+//                .attr("y", "-8px")
+//                .attr("width", "15px")
+//                .attr("height", "15px");
 
         // Transition nodes to their new position.
         var nodeUpdate = node.transition()
@@ -193,64 +195,65 @@ fasdfsdfsadf
     }
 
 
+    //$info['month'] = '8/1/2017';
+    //$info['func'] = 'getTreeView';
+    //$info['user'] = 'zlwav01010';
 
 
-    var jsonResponse = ""; 
-          $.ajax({
-            url:"http://sbobetsexy.com/bet/controller/vipController.php", //the page containing php script
-            type: "post", //request type,
-            //data: {registration: "success", name: "xyz", email: "abc@gmail.com"}
-            success:function(result){
-                debugger;
-                //JSON.stringify(result);
-                //JSON.parse(result);
-                d3.json("test.json", function (error, flare) {
-        if (error)
-            throw error;
-
-        root = flare;
-        root.x0 = height / 2;
-        root.y0 = 0;
-
-        function collapse(d) {
-            if (d.children) {
-                d._children = d.children;
-                d._children.forEach(collapse);
-                d.children = null;
-            } else {
-
-            }
-
-        }
-
-        function expand(d) {
-            var children = (d.children) ? d.children : d._children;
-            if (d._children) {
-                d.children = d._children;
-                d._children = null;
-            }
-            if (children)
-                children.forEach(expand);
-        }
-
-        function expandAll() {
-            expand(root);
-            update(root);
-        }
-
-        function collapseAll() {
-            root.children.forEach(collapse);
-            collapse(root);
-            update(root);
-        }
+    var param = '&month=<?=$_GET[month]?>&user=<?=$_GET[user]?>';
+    $.ajax({
+        //url: "http://localhost/BetSystem/Bet/controller/vipController.php?func=getTreeView&month=8/1/2017&user=zlwav01010", //the page containing php script
+        url: "http://sbobetsexy.com/bet/controller/vipController.php?func=getTreeView"+param, //the page containing php script
+        type: "get", //request type,
+        success: function (result) {
+            debugger;
+            
+            d3.json(result, function (error, flare) {
 
 
-        root.children.forEach(collapse);
-        update(root);
-        expandAll();
+                root = flare;
+                root.x0 = height / 2;
+                root.y0 = 0;
+
+                function collapse(d) {
+                    if (d.children) {
+                        d._children = d.children;
+                        d._children.forEach(collapse);
+                        d.children = null;
+                    } else {
+
+                    }
+
+                }
+
+                function expand(d) {
+                    var children = (d.children) ? d.children : d._children;
+                    if (d._children) {
+                        d.children = d._children;
+                        d._children = null;
+                    }
+                    if (children)
+                        children.forEach(expand);
+                }
+
+                function expandAll() {
+                    expand(root);
+                    update(root);
+                }
+
+                function collapseAll() {
+                    root.children.forEach(collapse);
+                    collapse(root);
+                    update(root);
+                }
+
+
+                root.children.forEach(collapse);
+                update(root);
+                expandAll();
 //         collapseAll();
-    });
-           }
-         });
+            });
+  
+    }});
 
 </script>

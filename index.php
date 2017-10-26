@@ -34,7 +34,7 @@ fasdfsdfsadf
 
     var margin = {top: 20, right: 120, bottom: 20, left: 120},
             width = 960 - margin.right - margin.left,
-            height = 950 - margin.top - margin.bottom;
+            height = 800 - margin.top - margin.bottom;
 
     var i = 0,
             duration = 750,
@@ -56,7 +56,7 @@ fasdfsdfsadf
 
 
 
-    d3.select(self.frameElement).style("height", "950px");
+    d3.select(self.frameElement).style("height", "800px");
 
     function update(source) {
 
@@ -202,7 +202,7 @@ fasdfsdfsadf
 
     var param = '&month=<?=$_GET[month]?>&user=<?=$_GET[user]?>';
     $.ajax({
-        //url: "http://localhost/BetSystem/Bet/controller/vipController.php?func=getTreeView&month=8/1/2017&user=zlwav01010", //the page containing php script
+//        url: "http://localhost/BetSystem/Bet/controller/vipController.php?func=getTreeView"+param, //the page containing php script
         url: "http://sbobetsexy.com/bet/controller/vipController.php?func=getTreeView"+param, //the page containing php script
         type: "get", //request type,
         success: function (result) {

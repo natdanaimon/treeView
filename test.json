@@ -1,0 +1,27 @@
+{  
+   "name":"zlwav01010",
+   "turnOver":"45650",
+   "children":[  
+      {  
+         "name":"zlwav01038",
+         "turnOver":"25238",
+         "children":[  
+
+         ]
+      },
+      {  
+         "name":"zlwav01042",
+         "turnOver":"46151",
+         "children":[  
+            {  
+               "name":"zlwav01056",
+               "turnOver":"545500"
+            },
+            {  
+               "name":"zlwav01589",
+               "turnOver":"2116660"
+            }
+         ]
+      }
+   ]
+}

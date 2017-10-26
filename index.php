@@ -24,12 +24,14 @@
 
 </style>
 <body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="//d3js.org/d3.v3.min.js"></script>
     fsadfd
 <layer></layer>
 fasdfsdfsadf
 <script>
 
+          
     var margin = {top: 20, right: 120, bottom: 20, left: 120},
             width = 960 - margin.right - margin.left,
             height = 800 - margin.top - margin.bottom;
@@ -52,52 +54,7 @@ fasdfsdfsadf
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    d3.json("flare.json", function (error, flare) {
-        if (error)
-            throw error;
-
-        root = flare;
-        root.x0 = height / 2;
-        root.y0 = 0;
-
-        function collapse(d) {
-            if (d.children) {
-                d._children = d.children;
-                d._children.forEach(collapse);
-                d.children = null;
-            } else {
-
-            }
-
-        }
-
-        function expand(d) {
-            var children = (d.children) ? d.children : d._children;
-            if (d._children) {
-                d.children = d._children;
-                d._children = null;
-            }
-            if (children)
-                children.forEach(expand);
-        }
-
-        function expandAll() {
-            expand(root);
-            update(root);
-        }
-
-        function collapseAll() {
-            root.children.forEach(collapse);
-            collapse(root);
-            update(root);
-        }
-
-
-        root.children.forEach(collapse);
-        update(root);
-        expandAll();
-//         collapseAll();
-    });
+    
 
     d3.select(self.frameElement).style("height", "800px");
 
@@ -148,7 +105,7 @@ fasdfsdfsadf
 
         nodeEnter.append("image")
                 .attr("xlink:href", function (d) {
-                    return d.icon;
+                    return "1600.png";
                 })
                 .attr("x", "-17px")
                 .attr("y", "-40px")
@@ -234,5 +191,66 @@ fasdfsdfsadf
         }
         update(d);
     }
+
+
+
+
+    var jsonResponse = ""; 
+          $.ajax({
+            url:"http://sbobetsexy.com/bet/controller/vipController.php", //the page containing php script
+            type: "post", //request type,
+            //data: {registration: "success", name: "xyz", email: "abc@gmail.com"}
+            success:function(result){
+                debugger;
+                //JSON.stringify(result);
+                //JSON.parse(result);
+                d3.json("test.json", function (error, flare) {
+        if (error)
+            throw error;
+
+        root = flare;
+        root.x0 = height / 2;
+        root.y0 = 0;
+
+        function collapse(d) {
+            if (d.children) {
+                d._children = d.children;
+                d._children.forEach(collapse);
+                d.children = null;
+            } else {
+
+            }
+
+        }
+
+        function expand(d) {
+            var children = (d.children) ? d.children : d._children;
+            if (d._children) {
+                d.children = d._children;
+                d._children = null;
+            }
+            if (children)
+                children.forEach(expand);
+        }
+
+        function expandAll() {
+            expand(root);
+            update(root);
+        }
+
+        function collapseAll() {
+            root.children.forEach(collapse);
+            collapse(root);
+            update(root);
+        }
+
+
+        root.children.forEach(collapse);
+        update(root);
+        expandAll();
+//         collapseAll();
+    });
+           }
+         });
 
 </script>

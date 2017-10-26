@@ -22,7 +22,8 @@
         {  
             "name": "Axis",
             "size": 1302,
-            "icon": "1600.png"
+            "icon": "1600.png",
+            "children": [] 
         },
         {  
             "name": "AxisGridLine",
